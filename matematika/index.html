@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f5ed">
+  <meta name="description" content="Hravá matematika pro prvňáčky: počítání obrázků, sčítání, odčítání, porovnávání a číselné řady. Vlastním tempem do 10, 20 nebo 100.">
+  <title>Moje matematika · Počítání je hra</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="model.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">123</span><span>Moje matematika<small>MALÉ KRŮČKY, VELKÉ OBJEVY</small></span></a>
+      <nav class="family-nav" aria-label="Další stránky"><a href="../abeceda/index.html">Abeceda</a><a href="../index.html">Kroužky ↗</a></nav>
+    </header>
+
+    <section class="intro"><div><p class="eyebrow">PRO MALÉ POČTÁŘE</p><h1>Počítání je hra<span>.</span></h1><p>Objevuj čísla. Každý pokus se počítá.</p></div><div class="number-play" aria-hidden="true"><span>1</span><span>2</span><span>3</span></div></section>
+
+    <nav class="modes" aria-label="Vyber si cvičení">
+      <button data-mode="count" aria-pressed="true"><span class="mode-icon" aria-hidden="true">▦</span><span>Kolik je obrázků?</span></button>
+      <button data-mode="add" aria-pressed="false"><span class="mode-icon" aria-hidden="true">+</span><span>Sčítání</span></button>
+      <button data-mode="subtract" aria-pressed="false"><span class="mode-icon" aria-hidden="true">−</span><span>Odčítání</span></button>
+      <button data-mode="compare" aria-pressed="false"><span class="mode-icon" aria-hidden="true">≷</span><span>Porovnávání</span></button>
+      <button data-mode="sequence" aria-pressed="false"><span class="mode-icon" aria-hidden="true">…</span><span>Číselná řada</span></button>
+    </nav>
+
+    <div class="settings"><div class="range" role="group" aria-label="Rozsah počítání"><button data-max="10" aria-pressed="true">Do 10</button><button data-max="20" aria-pressed="false">Do 20</button><button data-max="100" aria-pressed="false">Do 100 <span>výzva</span></button></div><span id="range-note">Začínáme malými krůčky.</span></div>
+
+    <section class="exercise" aria-labelledby="question">
+      <div class="exercise-heading"><span id="exercise-label">POČÍTÁME OBRÁZKY</span><span class="stars" id="score" aria-label="Vyřešeno 0 příkladů">★ <span>0</span></span></div>
+      <h2 id="question" tabindex="-1">Kolik obrázků vidíš?</h2>
+      <p class="instruction" id="instruction">Klepni na každý obrázek. Pak vyber číslo.</p>
+      <div class="workspace" id="workspace"></div>
+      <div class="help-row"><button class="hint-button" id="hint" aria-expanded="false" aria-controls="hint-panel">Ukázat nápovědu</button><button class="clear-button" id="clear-marks">Zrušit označení obrázků</button></div>
+      <div class="hint-panel" id="hint-panel" hidden></div>
+      <div class="answer-area"><p class="answer-label" id="answer-label">VYBER SPRÁVNÉ ČÍSLO</p><div class="answers" id="answers" role="group" aria-labelledby="answer-label"></div></div>
+      <div class="feedback-row"><p id="feedback" role="status" aria-live="polite" aria-atomic="true">V klidu. Máš tolik času, kolik potřebuješ.</p><button class="next" id="next">Jiný příklad <span aria-hidden="true">→</span></button></div>
+    </section>
+
+    <div class="under-card"><span><span class="little-star" aria-hidden="true">✦</span> Chyby patří k objevování.</span><span>Bez spěchu. Vlastním tempem.</span></div>
+    <footer><span>Počítej, zkoušej, objevuj.</span><details><summary>Pro rodiče a další nápady</summary><div class="parent-info"><h3>Malá chvilka s matematikou</h3><p>Začněte rozsahem do 10. Rozsah do 20 zvolte, až si dítě bude jistější. Do 100 je rozšíření pro zvídavé počtáře; není nutné zvládnout všechno hned. Příklady mohou přecházet přes desítku. Odčítání má vždy nezáporný výsledek.</p><p>U obrázků lze klepnutím označovat už spočítané předměty. Větší množství je ve skupinách po deseti. Hvězdička přibude za každý vyřešený příklad i po opravě; počítadlo platí jen pro tuto otevřenou stránku.</p><h3>Co dalšího si zahrát?</h3><ul><li><strong>Rozklady čísel:</strong> kolik chybí od 6 do 10?</li><li><strong>Tvary:</strong> najdi kruh, čtverec, trojúhelník a obdélník.</li><li><strong>Slovní úlohy:</strong> mám 3 jablka a dostanu další 2. Kolik jich mám?</li><li><strong>Vzory:</strong> pokračuj v řadě kolečko, čtverec, kolečko…</li><li><strong>Hra na obchod:</strong> poskládej cenu z mincí 1, 2 a 5 Kč.</li></ul><p>Tyto náměty navazují na oblasti čísel, geometrie a pravidelností v <a href="https://prohlednout.rvp.cz/zakladni-vzdelavani/vzdelavaci-oblasti/mat/mat">RVP pro matematiku</a>; konkrétní obtížnost přizpůsobte tomu, co dítě právě probírá ve škole.</p><p>Obrázky: <a href="https://github.com/twitter/twemoji">Twemoji, Twitter a přispěvatelé</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Použité obrázky jsou beze změn. Web nepoužívá analytiku ani neodesílá odpovědi.</p></div></details></footer>
+    <noscript><p class="noscript">Pro hraní zapněte JavaScript v prohlížeči.</p></noscript>
+  </main>
+</body>
+</html>

@@ -9,7 +9,9 @@ http.createServer((req,res) => {
   if (pathname === '/') pathname = '/index.html';
   if (pathname === '/abeceda') { res.writeHead(302, { Location:'/abeceda/' }); res.end(); return; }
   if (pathname === '/abeceda/') pathname = '/abeceda/index.html';
-  if (pathname !== '/index.html' && !/^\/abeceda\/(?:index\.html|style\.css|app\.js|data\.js|favicon\.svg|assets\/[\w.-]+)$/.test(pathname)) {
+  if (pathname === '/matematika') { res.writeHead(302, { Location:'/matematika/' }); res.end(); return; }
+  if (pathname === '/matematika/') pathname = '/matematika/index.html';
+  if (pathname !== '/index.html' && !/^\/abeceda\/(?:index\.html|style\.css|app\.js|data\.js|favicon\.svg|assets\/[\w.-]+)$/.test(pathname) && !/^\/matematika\/(?:index\.html|style\.css|app\.js|model\.js|favicon\.svg)$/.test(pathname)) {
     res.writeHead(404); res.end('Not found'); return;
   }
   const file = path.join(__dirname, '..', pathname);

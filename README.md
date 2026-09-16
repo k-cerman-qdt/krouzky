@@ -36,3 +36,20 @@ Celkem je k dispozici 89 obrázkových příkladů; 28 písmen má dva až tři 
 Lokální náhled: `node tools/preview.cjs`, adresa `http://127.0.0.1:4174/abeceda/` (volitelně proměnná prostředí `PORT`).
 
 Všechny automatické testy: `node --test tests/*.test.cjs`.
+
+## Hravá matematika
+
+Web: [k-cerman-qdt.github.io/krouzky/matematika/](https://k-cerman-qdt.github.io/krouzky/matematika/).
+
+`matematika/index.html` je česká stránka pro počítání obrázků, sčítání,
+odčítání, porovnávání čísel a doplňování vzestupné i sestupné řady.
+Výchozí rozsah je 0–10, dále lze vybrat 0–20 a 0–100 jako výzvu.
+Příklady mohou přecházet přes desítku; nikdy nemají záporný výsledek.
+Obrázky lze označovat klepnutím, nápověda ukáže skupiny nebo škrtání při
+odčítání. Za vyřešený příklad přibude jedna hvězdička i po opravě.
+Počítadlo se po obnovení stránky vynuluje. Bez časovače, přihlášení či analytiky.
+
+Stránka funguje i přímo ze souboru bez internetu; používá místní obrázky
+Twemoji ze složky `abeceda/assets/` (CC BY 4.0, atribuce v patičce).
+Náhled po spuštění `node tools/preview.cjs`: `http://127.0.0.1:4174/matematika/`.
+Logika příkladů je v `matematika/model.js`, vzhled v `style.css`, interakce v `app.js`.
