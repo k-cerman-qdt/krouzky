@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ed">
+  <meta name="description" content="Rodinný rozvrh dětských kroužků pro první pololetí školního roku 2026/2027.">
+  <title>Naše kroužky · 2026/27</title>
+  <style>
+    :root{--paper:#f6f4ed;--ink:#293d37;--muted:#65726c;--line:#dce0d6;--green:#244d40;--a:#713c86;--b:#22664d;--both:#255976}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Segoe UI",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.35}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #c38932;outline-offset:4px}button{transition:background .15s,transform .15s}button:hover:not(:disabled){filter:brightness(.96)}main{max-width:1320px;margin:auto;padding:36px 44px 26px}.brand{display:flex;align-items:center;gap:10px;font-weight:750;font-size:17px;letter-spacing:-.4px}.brand-icon{background:var(--green);color:#fff;border-radius:11px;width:34px;height:34px;display:grid;place-items:center}.topbar{display:flex;justify-content:space-between;align-items:center}.school{font-size:12px;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted)}.hero{display:flex;align-items:center;justify-content:space-between;padding:54px 0 42px;gap:24px}.eyebrow{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin:0 0 12px}h1{font:normal clamp(40px,5vw,65px)/1.1 Georgia,serif;letter-spacing:-2px;margin:0 0 16px}.intro{color:var(--muted);margin:0;font-size:16px}.period{border:1px solid var(--line);padding:18px 23px;border-radius:16px;min-width:198px;background:#ffffff60}.period span{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.period strong{font-size:17px;font-weight:600}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:25px;flex-wrap:wrap}.filters{display:flex;border:1px solid var(--line);border-radius:99px;padding:4px;gap:3px;background:#eeeee6}.filter{border:0;background:transparent;padding:9px 17px;border-radius:99px;color:var(--ink);font-weight:600}.filter[aria-pressed="true"]{background:var(--green);color:white;box-shadow:0 2px 5px #183d241a}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;background:currentColor}.purple{color:var(--a)}.jade{color:var(--b)}.filter[aria-pressed="true"] .dot{color:#e5d5ee}.filter[data-child="B"][aria-pressed="true"] .dot{color:#b7e3ca}.controls{display:flex;gap:10px;align-items:center}.plain,.arrow{border:1px solid var(--line);background:#ffffff80;color:var(--ink);border-radius:9px;height:40px;padding:0 13px}.arrow{width:40px;font-size:20px;padding:0}.date-label{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px}.date-label input{border:1px solid var(--line);border-radius:9px;padding:8px 10px;background:#ffffff80;color:var(--ink);height:40px}.week-heading{border-top:1px solid var(--line);padding:26px 0 23px;display:flex;justify-content:space-between;align-items:center;gap:12px}h2{font-size:24px;letter-spacing:-.7px;font-weight:600;margin:0}.week-heading p{margin:5px 0 0;color:var(--muted);font-size:13px}.counter{font-size:12px;background:#e8eadf;padding:8px 12px;border-radius:99px;white-space:nowrap}.week{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}.day{border:1px solid var(--line);border-radius:16px;background:#ffffff55;min-height:319px;overflow:hidden}.day.today{border-color:#547866;box-shadow:0 0 0 1px #547866}.day-header{display:flex;justify-content:space-between;align-items:center;padding:17px 16px;border-bottom:1px solid var(--line);gap:6px}.weekday{font-size:13px;font-weight:600;margin:0}.day-date{font-size:24px;font-family:Georgia,serif;line-height:1.2}.day.today .day-date{color:var(--green)}.today-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;margin-left:5px}.events{padding:12px;display:grid;gap:12px}.event{padding:15px 13px 12px;border-radius:11px;position:relative;border:1px solid #b990cc50;background:#eee3f3;color:var(--a)}.event.child-b{background:#e0eee2;border-color:#83ae9350;color:var(--b)}.event.shared{background:#e0ecf3;border-color:#84adc950;color:var(--both)}.event-top{display:flex;align-items:center;justify-content:space-between;gap:4px}.time{font-weight:700;font-size:14px;white-space:nowrap}.activity-icon{font-size:20px;line-height:1;opacity:.7}.event h3{font-size:17px;letter-spacing:-.3px;margin:14px 0 3px}.duration{font-size:11px;opacity:.85}.kids{display:flex;gap:5px;margin-top:15px;flex-wrap:wrap}.kid{font-size:10px;border:1px solid currentColor;border-radius:99px;padding:2px 8px}.event.cancelled{background:#eeece8;color:#6f6b64;border:1px dashed #aaa59b}.cancelled h3,.cancelled .time{text-decoration:line-through}.cancelled-label{display:block;font-size:11px;font-weight:700;margin-top:7px;color:#92553c}.empty{color:#81897e;text-align:center;font-size:12px;padding:36px 5px}.empty-mark{display:block;font:28px Georgia,serif;margin-bottom:10px;color:#9ca697}.lower{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-top:28px}.note{padding:22px 24px;border:1px solid var(--line);border-radius:14px}.note h3{font-size:14px;margin:0 0 9px;font-weight:650}.note p{font-size:12px;color:var(--muted);margin:0;line-height:1.8}.exception-dates{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.exception-date{font-size:11px;color:#745847;background:#eee8dd;border-radius:7px;padding:5px 9px}footer{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:31px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.print{border:0;background:none;color:var(--muted);font-size:12px;padding:8px 0}noscript{display:block;padding:20px;background:#fff0ce}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:1050px){main{padding:28px 25px}.week{gap:8px}.day-header{padding:14px 11px}.events{padding:8px}.event{padding:13px 9px}.time{font-size:12px}.activity-icon{font-size:16px}.event h3{font-size:16px}.controls{flex-wrap:wrap}.hero{padding:39px 0 31px}}
+    @media(max-width:760px){main{padding:23px 18px}.school{font-size:9px;letter-spacing:.5px}.brand{font-size:15px}.hero{padding:35px 0 25px;display:block}h1{font-size:45px;letter-spacing:-1.8px}.intro{font-size:14px}.period{display:flex;gap:10px;align-items:center;margin-top:20px;border:0;border-radius:0;border-left:3px solid #b6c5b4;padding:2px 0 2px 12px;background:none}.period span{margin:0}.period strong{font-size:13px}.toolbar{gap:15px;margin-bottom:19px}.filters{width:100%;justify-content:space-between}.filter{padding:9px 14px;flex:1}.controls{width:100%;gap:7px}.date-label{margin-left:auto}.date-label>span{display:none}.date-label input{width:135px;font-size:12px}.plain{font-size:12px;padding:0 9px}.arrow{width:35px}.week-heading{padding:20px 0 18px}h2{font-size:21px}.counter{font-size:10px;padding:7px 9px}.week{grid-template-columns:1fr;gap:12px}.day{min-height:0}.day-header{padding:13px 16px}.weekday{font-size:14px}.day-date{font-size:22px}.events{padding:12px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}.event{padding:15px}.event h3{margin-top:12px;font-size:19px}.time{font-size:15px}.activity-icon{font-size:20px}.empty{padding:8px 0}.empty-mark{display:inline;margin-right:10px;font-size:19px}.lower{grid-template-columns:1fr;gap:12px;margin-top:20px}.note{padding:18px 20px}footer{font-size:10px;margin-top:24px}}
+    @media print{@page{size:A4 landscape;margin:12mm}body{background:white}main{max-width:none;padding:0}.hero{padding:20px 0}.toolbar,.print,.date-label{display:none}.week{grid-template-columns:repeat(5,minmax(0,1fr))}.day{min-height:260px;break-inside:avoid}.events{display:grid;grid-template-columns:1fr}.event{-webkit-print-color-adjust:exact;print-color-adjust:exact}.lower{grid-template-columns:1fr 1fr;margin-top:20px}.note{padding:14px}.day-header{padding:12px}.time{font-size:12px}h1{font-size:36px}.period{display:block}footer{margin-top:20px}}
+  </style>
+</head>
+<body>
+<main>
+  <header class="topbar"><div class="brand"><span class="brand-icon" aria-hidden="true">✳</span> Naše kroužky</div><span class="school">Školní rok 2026 / 27</span></header>
+  <section class="hero" aria-labelledby="title"><div><p class="eyebrow">Malé plány, velká dobrodružství</p><h1 id="title">Každý týden přehledně.</h1><p class="intro">Kdo, kdy a kam. Všechny kroužky na jednom místě.</p></div><div class="period"><span>První pololetí</span><strong>září 2026 — leden 2027</strong></div></section>
+  <noscript>Pro přepínání týdnů povol JavaScript. Pravidelně: pondělí Sportovky 15:30–16:30 (A); úterý Angličtina 12:45–13:30 (B), Dramaták od 22. 9. 15:00–16:30 (A); středa Sportovky 14:00–14:45 (B); pátek Plavání 17:00–18:00 (A i B). Výjimky plavání najdeš níže.</noscript>
+  <nav class="toolbar" aria-label="Ovládání rozvrhu"><div class="filters" role="group" aria-label="Výběr dítěte"><button class="filter" data-child="all" aria-pressed="true">Obě děti</button><button class="filter" data-child="A" aria-pressed="false"><span class="dot purple" aria-hidden="true"></span>Dítě A</button><button class="filter" data-child="B" aria-pressed="false"><span class="dot jade" aria-hidden="true"></span>Dítě B</button></div><div class="controls"><button id="prev" class="arrow" aria-label="Předchozí týden">‹</button><button id="today" class="plain">Tento týden</button><button id="next" class="arrow" aria-label="Následující týden">›</button><label class="date-label"><span>Přejít na datum</span><input id="date" type="date" min="2026-09-01" max="2027-01-31" aria-label="Přejít na datum"></label></div></nav>
+  <section aria-label="Týdenní rozvrh"><div class="week-heading"><div><h2 id="week-title"></h2><p id="week-subtitle"></p></div><span class="counter" id="count"></span></div><div id="week" class="week"></div><p id="announcement" class="sr-only" role="status" aria-live="polite"></p></section>
+  <section class="lower" aria-label="Poznámky k rozvrhu"><div class="note"><h3>Plavání má pár volných pátků</h3><p>V těchto termínech se neplave. V rozvrhu je uvidíš jako zrušenou lekci.</p><div class="exception-dates"><span class="exception-date">30. 10. 2026</span><span class="exception-date">25. 12. 2026</span><span class="exception-date">1. 1. 2027</span><span class="exception-date">29. 1. 2027</span></div></div><div class="note"><h3>Dobré vědět</h3><p>Dramaták začíná v úterý 22. září a dále se opakuje každý týden. Rozvrh platí od 1. 9. 2026 do 31. 1. 2027. Prázdniny a svátky se automaticky nevynechávají; započítané jsou uvedené výjimky.</p></div></section>
+  <footer><span>Naše kroužky · ať zbude čas i na nicnedělání.</span><button class="print" id="print">Vytisknout týden ↗</button></footer>
+</main>
+<script id="schedule-model">
+// Zde lze upravit děti, časy, první lekci a výjimky. Datum vždy RRRR-MM-DD.
+const PERIOD = { start: '2026-09-01', end: '2027-01-31' };
+const ACTIVITIES = [
+  { name: 'Sportovky', day: 1, start: '15:30', end: '16:30', children: ['A'], icon: '↗' },
+  { name: 'Angličtina', day: 2, start: '12:45', end: '13:30', children: ['B'], icon: 'Aa' },
+  { name: 'Dramaták', day: 2, start: '15:00', end: '16:30', children: ['A'], first: '2026-09-22', icon: '✦' },
+  { name: 'Sportovky', day: 3, start: '14:00', end: '14:45', children: ['B'], icon: '↗' },
+  { name: 'Plavání', day: 5, start: '17:00', end: '18:00', children: ['A', 'B'], icon: '≈', except: ['2026-10-30', '2026-12-25', '2027-01-01', '2027-01-29'] }
+];
+function parseDate(value) { const [y,m,d] = value.split('-').map(Number); return new Date(y,m-1,d,12); }
+function iso(date) { return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`; }
+function addDays(date, days) { const copy = new Date(date); copy.setDate(copy.getDate()+days); return copy; }
+function mondayOf(date) { return addDays(date,-((date.getDay()+6)%7)); }
+function eventsOn(date, child = 'all') {
+  if (date < PERIOD.start || date > PERIOD.end) return [];
+  const day = parseDate(date).getDay();
+  return ACTIVITIES.filter(a => a.day === day && date >= (a.first || PERIOD.start) && (child === 'all' || a.children.includes(child)))
+    .map(a => ({ ...a, cancelled: (a.except || []).includes(date) })).sort((a,b) => a.start.localeCompare(b.start));
+}
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const DAYS = ['Pondělí','Úterý','Středa','Čtvrtek','Pátek'];
+const todayKey = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Prague' }).format(new Date());
+const clampedToday = todayKey < PERIOD.start ? PERIOD.start : todayKey > PERIOD.end ? PERIOD.end : todayKey;
+const firstWeek = mondayOf(parseDate(PERIOD.start));
+const lastWeek = mondayOf(parseDate(PERIOD.end));
+let selectedWeek = mondayOf(parseDate(clampedToday));
+let childFilter = 'all';
+function shortDate(date) { return `${date.getDate()}. ${date.getMonth()+1}.`; }
+function minutes(time) { const [h,m] = time.split(':').map(Number); return h*60+m; }
+function element(tag, className, content) { const el = document.createElement(tag); if(className) el.className = className; if(content !== undefined) el.textContent = content; return el; }
+function render() {
+  const sunday = addDays(selectedWeek,6);
+  const yearPrefix = selectedWeek.getFullYear() !== sunday.getFullYear() ? ` ${selectedWeek.getFullYear()}` : '';
+  const title = `${shortDate(selectedWeek)}${yearPrefix} – ${shortDate(sunday)} ${sunday.getFullYear()}`;
+  $('week-title').textContent = title;
+  const current = iso(mondayOf(parseDate(todayKey))) === iso(selectedWeek);
+  $('week-subtitle').textContent = `${current ? 'Tento týden' : 'Týdenní rozvrh'} · ${childFilter === 'all' ? 'obě děti' : 'dítě '+childFilter}`;
+  $('prev').disabled = selectedWeek <= firstWeek;
+  $('next').disabled = selectedWeek >= lastWeek;
+  $('today').textContent = todayKey < PERIOD.start ? 'Začátek období' : todayKey > PERIOD.end ? 'Konec období' : 'Tento týden';
+  const selectedKey = iso(selectedWeek);
+  $('date').value = selectedKey < PERIOD.start ? PERIOD.start : selectedKey;
+  $('week').replaceChildren();
+  let count = 0, cancellations = 0;
+  DAYS.forEach((name, i) => {
+    const date = addDays(selectedWeek,i), key = iso(date), isToday = key === todayKey;
+    const day = element('section','day'+(isToday ? ' today' : ''));
+    day.setAttribute('aria-label', `${name} ${shortDate(date)} ${date.getFullYear()}`);
+    const header = element('div','day-header');
+    const weekday = element('h3','weekday',name);
+    if (isToday) weekday.append(element('span','today-label','dnes'));
+    header.append(weekday,element('span','day-date',`${date.getDate()}.`));
+    const events = element('div','events');
+    const list = eventsOn(key,childFilter);
+    list.forEach(a => {
+      a.cancelled ? cancellations++ : count++;
+      const card = element('article','event '+(a.children.length > 1 ? 'shared' : a.children[0] === 'B' ? 'child-b' : 'child-a')+(a.cancelled ? ' cancelled' : ''));
+      const top = element('div','event-top');
+      const icon = element('span','activity-icon',a.icon); icon.setAttribute('aria-hidden','true');
+      top.append(element('span','time',`${a.start}–${a.end}`),icon);
+      card.append(top,element('h3','',a.name),element('div','duration',`${minutes(a.end)-minutes(a.start)} minut`));
+      if(a.cancelled) card.append(element('span','cancelled-label','Lekce se nekoná'));
+      const kids = element('div','kids');
+      a.children.forEach(c => kids.append(element('span','kid','Dítě '+c)));
+      card.append(kids); events.append(card);
+    });
+    if(!list.length) { const empty = element('div','empty'); const mark = element('span','empty-mark','—'); mark.setAttribute('aria-hidden','true'); empty.append(mark,document.createTextNode(key < PERIOD.start || key > PERIOD.end ? 'Mimo období' : 'Bez kroužků')); events.append(empty); }
+    day.append(header,events); $('week').append(day);
+  });
+  const inflected = count === 1 ? 'lekce' : count >= 2 && count <= 4 ? 'lekce' : 'lekcí';
+  $('count').textContent = `${count} ${inflected}${cancellations ? ' · '+cancellations+' zrušená' : ''}`;
+  $('announcement').textContent = `${title}, ${$('week-subtitle').textContent}, ${$('count').textContent}`;
+}
+$('prev').addEventListener('click',() => { if(selectedWeek > firstWeek) { selectedWeek = addDays(selectedWeek,-7); render(); } });
+$('next').addEventListener('click',() => { if(selectedWeek < lastWeek) { selectedWeek = addDays(selectedWeek,7); render(); } });
+$('today').addEventListener('click',() => { selectedWeek = mondayOf(parseDate(clampedToday)); render(); });
+$('date').addEventListener('change',event => { const value = event.target.value; if(!value || !event.target.validity.valid || value < PERIOD.start || value > PERIOD.end) return; selectedWeek = mondayOf(parseDate(value)); render(); });
+document.querySelectorAll('[data-child]').forEach(button => button.addEventListener('click',() => { childFilter = button.dataset.child; document.querySelectorAll('[data-child]').forEach(b => b.setAttribute('aria-pressed',String(b === button))); render(); }));
+$('print').addEventListener('click',() => window.print());
+render();
+</script>
+</body>
+</html>
