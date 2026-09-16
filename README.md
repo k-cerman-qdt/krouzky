@@ -19,3 +19,18 @@ Dramaták je předpokládán každý týden od 22. září. Prázdniny a svátky
 ## Ověření
 
 S Node.js: `node --test tests/schedule.test.cjs`.
+
+## Obrázková abeceda
+
+Na [k-cerman-qdt.github.io/krouzky/abeceda/](https://k-cerman-qdt.github.io/krouzky/abeceda/) je samostatná statická stránka pro tablet. Soubory jsou ve složce `abeceda/`; nevyžaduje sestavení ani instalaci balíčků. Lze otevřít i `abeceda/index.html` přímo ze souboru. Z kroužků na ni vede odkaz v patičce a z abecedy vede odkaz zpět.
+
+- 42 karet: velká i malá tiskací písmena, český psací font Playwrite Česko, obrázek a příklad slova.
+- Úplná abeceda nebo menší sada „Na začátek“, přehled všech karet a hra se třemi možnostmi. Přepínání šipkami, tlačítky a tahem prstu.
+- Obrázky a font jsou lokální; atribuce a licence jsou v části „Pro rodiče a zdroje“ a v `abeceda/assets/`. Obrázky Twemoji jsou pod CC BY 4.0; iglú od Delapouite pod CC BY 3.0 má upravené barvy; eso je vlastní SVG. Font je pod SIL OFL 1.1.
+- Zvuk používá Web Speech API a český hlas zařízení. Kvalita a dostupnost závisí na systému/prohlížeči; některé hlasy potřebují připojení. Pokud český hlas chybí, hra ukáže písmeno v zadání pro vizuální přiřazování. Web nesbírá data.
+
+Obsah karet upravujte v `abeceda/data.js`, vzhled v `abeceda/style.css` a interakce v `abeceda/app.js`.
+
+Lokální náhled: `node tools/preview.cjs`, adresa `http://127.0.0.1:4174/abeceda/` (volitelně proměnná prostředí `PORT`).
+
+Všechny automatické testy: `node --test tests/*.test.cjs`.
