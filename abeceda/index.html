@@ -7,9 +7,9 @@
   <meta name="description" content="Hravá česká abeceda s obrázky, velkými i malými písmeny a českým psacím písmem. Pro malé objevitele.">
   <title>Moje abeceda · Písmenko po písmenku</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css">
-  <script src="data.js" defer></script>
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="data.js?v=2" defer></script>
+  <script src="app.js?v=2" defer></script>
 </head>
 <body>
   <main>
@@ -23,7 +23,7 @@
     <nav class="modes" aria-label="Co si zahrajeme?">
       <button class="mode active" data-mode="learn" aria-pressed="true"><span aria-hidden="true">▣</span> Kartičky</button>
       <button class="mode" data-mode="game" aria-pressed="false"><span aria-hidden="true">☆</span> Najdi písmenko</button>
-      <button class="mode" data-mode="overview" aria-pressed="false"><span aria-hidden="true">▦</span> Celá abeceda</button>
+      <button class="mode" data-mode="overview" aria-pressed="false"><span aria-hidden="true">▦</span> Přehled písmen</button>
     </nav>
 
     <div class="settings">
@@ -33,21 +33,21 @@
 
     <section id="learn" aria-label="Obrázkové kartičky">
       <article class="letter-card" id="letter-card">
-        <div class="letter-side"><span class="small-label">TAKHLE VYPADÁ</span><div class="print-pair" id="print-pair" aria-label="Velké a malé tiskací písmeno"><span id="upper">A</span><span id="lower">a</span></div><div class="cursive-panel" id="cursive-panel" hidden><span class="small-label">A TAKHLE SE PÍŠE</span><div class="cursive-pair" id="cursive-pair"><span>A</span><span>a</span></div></div><div class="letter-footer"><span class="letter-dot" aria-hidden="true"></span><span id="letter-position">1 / 42</span></div></div>
-        <div class="picture-side"><div class="picture-stage"><img id="letter-image" src="assets/1f697.svg" alt="auto" width="240" height="240"><span class="spark spark-one" aria-hidden="true">✦</span><span class="spark spark-two" aria-hidden="true">✧</span></div><div class="word-intro" id="word-intro">A jako</div><h2 class="word" id="word"><mark>a</mark>uto</h2><p id="word-note" class="word-note"></p><button class="listen" id="listen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg> Poslechnout</button></div>
+        <div class="letter-side"><span class="small-label">TAKHLE VYPADÁ</span><div class="print-pair" id="print-pair" aria-label="Velké a malé tiskací písmeno"><span id="upper">A</span><span id="lower">a</span></div><div class="cursive-panel" id="cursive-panel" hidden><span class="small-label">A TAKHLE SE PÍŠE</span><div class="cursive-pair" id="cursive-pair"><span>A</span><span>a</span></div></div><div class="letter-footer"><span class="letter-dot" aria-hidden="true"></span><span id="letter-position">1 / 39</span></div></div>
+        <div class="picture-side"><div class="picture-stage"><img id="letter-image" src="assets/1f697.svg" alt="auto" width="240" height="240"><span class="spark spark-one" aria-hidden="true">✦</span><span class="spark spark-two" aria-hidden="true">✧</span></div><div class="word-intro" id="word-intro">A jako</div><h2 class="word" id="word"><mark>a</mark>uto</h2><p id="word-note" class="word-note"></p><button class="listen" id="listen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg> Poslechnout</button><div id="example-controls" class="example-controls"><span id="example-count">Slovo 1 z 3</span><button id="next-example" class="next-example">Další slovo <span aria-hidden="true">↻</span></button></div></div>
       </article>
       <div class="card-controls"><button id="prev" class="arrow" aria-label="Předchozí písmenko">←</button><div><span class="control-hint">Každé písmenko má svůj příběh.</span><div class="progress-track"><span id="progress"></span></div></div><button id="next" class="next">Další písmenko <span aria-hidden="true">→</span></button></div>
       <div id="letter-strip" class="letter-strip" role="group" aria-label="Rychlý výběr písmenka"></div>
     </section>
 
-    <section id="overview" hidden aria-label="Přehled abecedy"><div class="section-heading"><h2>Všechna písmenka pohromadě</h2><p>Klepni na písmenko a otevři jeho kartičku.</p></div><div id="alphabet-grid" class="alphabet-grid"></div></section>
+    <section id="overview" hidden aria-label="Přehled abecedy"><div class="section-heading"><h2>Všechna naše písmenka pohromadě</h2><p>Klepni na písmenko a otevři jeho kartičku.</p></div><div id="alphabet-grid" class="alphabet-grid"></div></section>
 
     <section id="game" hidden aria-label="Hra Najdi písmenko"><div class="game-heading"><div><p class="eyebrow">MALÁ PÍSMENKOVÁ VÝPRAVA</p><h2>Najdi písmenko</h2></div><span id="score" class="score">★ 0</span></div><div class="game-card"><img id="game-image" alt="" width="145" height="145"><h3 id="game-question">Poslechni si písmenko.</h3><button class="listen" id="game-listen">♪ Přehrát zadání</button><p id="game-hint" class="game-hint"></p><div id="answers" class="answers"></div><p id="game-feedback" class="game-feedback" role="status" aria-live="polite">Klepni na správné písmenko.</p><button id="game-next" class="next" hidden>Další hádanka →</button></div></section>
 
     <p id="sound-status" class="sound-status" role="status" hidden></p>
     <p id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
     <noscript><p>Pro procházení kartiček a hraní povol JavaScript v prohlížeči.</p></noscript>
-    <footer><span>S chutí objevovat. Vlastním tempem.</span><details><summary>Pro rodiče a zdroje</summary><div class="parent-info"><p>V sadě „I háčky a čárky“ je všech 42 písmen včetně Ch, Q, W a X. „Na začátek“ nabízí 27 písmen s jednoduchými slovy. Písmeno někdy hledáme uvnitř slova: hv<strong>ě</strong>zda, d<strong>ů</strong>m, ta<strong>x</strong>i. Q ukazujeme na přejatém slově quiche (čti „kiš“, slaný koláč).</p><p>České předčítání používá hlas vašeho zařízení. Pokud není dostupný, můžete zadání přečíst dítěti. V nastavení tabletu lze obvykle přidat český hlas. Názvy písmen slouží k jejich poznávání; nejde o nácvik izolovaných hlásek ani metodiku výuky čtení.</p><p>Psací tvary: <a href="https://github.com/TypeTogether/Playwrite">Playwrite Česko, TypeTogether</a> (<a href="assets/PlaywriteCZ-OFL.txt">SIL OFL 1.1</a>). Jde o českou spojitou psací předlohu; školní písanky se mohou v detailech lišit.</p><p>Obrázky: <a href="https://github.com/twitter/twemoji">Twemoji, Twitter a přispěvatelé</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, koláč má upravené barvy. Iglú: <a href="https://game-icons.net/1x1/delapouite/igloo.html">Delapouite / Game-icons.net</a>, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, upravené barvy. Eso: vlastní jednoduchá vektorová ilustrace. <a href="https://prirucka.ujc.cas.cz/?id=900">Česká abeceda – ÚJČ</a>.</p></div></details></footer>
+    <footer><span>S chutí objevovat. Vlastním tempem.</span><details><summary>Pro rodiče a zdroje</summary><div class="parent-info"><p>Tlačítko „Další slovo“ ukáže jiný příklad pro stejné písmeno. Každé slovo začíná svým písmenem: <strong>a</strong>uto, <strong>ď</strong>áblík, <strong>x</strong>ylofon. Širší sada má 39 písmen, sada „Na začátek“ nabízí 27 písmen s jednoduchými slovy. Ě, Ů a Ý vynecháváme, protože pro ně nemáme vhodný běžný příklad na začátku slova. U méně častých písmen používáme i méně známá slova, například árie, éro, óda nebo název země Írán. Q ukazujeme na přejatém slově quiche (čti „kiš“, slaný koláč).</p><p>České předčítání používá hlas vašeho zařízení. Pokud není dostupný, můžete zadání přečíst dítěti. V nastavení tabletu lze obvykle přidat český hlas. Názvy písmen slouží k jejich poznávání; nejde o nácvik izolovaných hlásek ani metodiku výuky čtení.</p><p>Psací tvary: <a href="https://github.com/TypeTogether/Playwrite">Playwrite Česko, TypeTogether</a> (<a href="assets/PlaywriteCZ-OFL.txt">SIL OFL 1.1</a>). Jde o českou spojitou psací předlohu; školní písanky se mohou v detailech lišit.</p><p>Obrázky: <a href="https://github.com/twitter/twemoji">Twemoji, Twitter a přispěvatelé</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, koláč má upravené barvy. Iglú a xylofon: <a href="https://game-icons.net/">Delapouite / Game-icons.net</a>, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, upravené barvy. Eso, web, yetti a ředkvička: vlastní jednoduché vektorové ilustrace. <a href="https://prirucka.ujc.cas.cz/?id=900">Česká abeceda – ÚJČ</a>.</p></div></details></footer>
   </main>
 </body>
 </html>

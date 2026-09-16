@@ -1,8 +1,8 @@
 (() => {
   'use strict';
-  const { pool, splitWord, createRound } = Alphabet;
+  const { pool, splitWord, createRound, exampleFor } = Alphabet;
   const $ = id => document.getElementById(id);
-  const state = { set: 'all', mode: 'learn', index: 0, cursive: false, round: null, score: 0, solved: false };
+  const state = { set: 'all', mode: 'learn', index: 0, exampleIndex: 0, cursive: false, round: null, score: 0, solved: false };
   const synth = window.speechSynthesis;
   let voice = null;
   let utterance = null;
@@ -42,13 +42,13 @@
     if (content !== undefined) el.textContent = content;
     return el;
   }
-  function current() { return pool(state.set)[state.index]; }
+  function current() { return exampleFor(pool(state.set)[state.index], state.exampleIndex); }
   function wordParts(item) {
     const parts = splitWord(item);
     return [document.createTextNode(parts.before), node('mark', '', parts.match), document.createTextNode(parts.after)];
   }
   function cardSpeech(item) {
-    return `${item.speech}. ${splitWord(item).before ? 'Najdeš ve slově' : 'Jako'} ${item.spokenWord}.${item.note ? ` ${item.note}.` : ''}`;
+    return `${item.speech}. Jako ${item.spokenWord}.${item.note ? ` ${item.note}.` : ''}`;
   }
   function renderCard(announce = false) {
     const items = pool(state.set);
@@ -60,9 +60,11 @@
     $('cursive-panel').hidden = !state.cursive;
     $('letter-image').src = item.image;
     $('letter-image').alt = item.word;
-    $('word-intro').textContent = `${item.upper} ${splitWord(item).before ? 'najdeš ve slově' : 'jako'}`;
+    $('word-intro').textContent = `${item.upper} jako`;
     $('word').replaceChildren(...wordParts(item));
     $('word-note').textContent = item.note;
+    $('example-controls').hidden = item.examples.length < 2;
+    $('example-count').textContent = `Slovo ${state.exampleIndex + 1} z ${item.examples.length}`;
     $('letter-position').textContent = `${state.index + 1} / ${items.length}`;
     $('progress').style.width = `${(state.index + 1) / items.length * 100}%`;
     $('prev').disabled = state.index === 0;
@@ -78,19 +80,17 @@
     }));
     if (announce) $('announcement').textContent = `${item.upper}, ${item.lower}. ${item.word}.`;
   }
-  function revealChip() {
-    const strip = $('letter-strip');
-    const chip = strip.children[state.index];
-    if (!chip) return;
-    strip.scrollLeft = chip.offsetLeft - strip.offsetLeft - strip.clientWidth / 2 + chip.clientWidth / 2;
-  }
   function selectLetter(index) {
     const restoreChipFocus = document.activeElement?.classList.contains('letter-chip');
     cancelSpeech();
     state.index = index;
+    state.exampleIndex = 0;
     renderCard(true);
-    revealChip();
-    if (restoreChipFocus) $('letter-strip').children[state.index].focus({ preventScroll: true });
+    if (restoreChipFocus) {
+      const chip = $('letter-strip').children[state.index];
+      chip.focus({ preventScroll: true });
+      chip.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
   }
   function renderOverview() {
     $('alphabet-grid').replaceChildren(...pool(state.set).map((item, index) => {
@@ -102,7 +102,7 @@
       if (state.cursive) button.append(node('span', 'mini-script', `${item.upper} ${item.lower}`));
       button.setAttribute('aria-label', `Otevřít ${item.upper}, ${item.word}`);
       button.addEventListener('click', () => {
-        state.index = index; setMode('learn');
+        state.index = index; state.exampleIndex = 0; setMode('learn');
         $('listen').focus({ preventScroll: true });
         $('letter-card').scrollIntoView({ block: 'nearest' });
       });
@@ -113,7 +113,7 @@
     const item = state.round.target;
     $('game-question').textContent = soundAvailable() ? 'Které písmenko slyšíš?' : `Najdi písmenko ${item.upper}`;
     $('game-hint').textContent = soundAvailable()
-      ? (splitWord(item).before ? `Nápověda: písmenko je ve slově „${item.word}“.` : `Nápověda: začíná na něj ${item.word}.`)
+      ? `Nápověda: začíná na něj ${item.word}.`
       : 'Podívej se na zadání a najdi stejné písmenko.';
   }
   function readQuestion() { speak(`Najdi písmeno ${state.round.target.speech}.`); }
@@ -159,7 +159,7 @@
       button.setAttribute('aria-pressed', String(button.dataset.mode === mode));
     });
     document.querySelector('.switch-label').hidden = mode === 'game';
-    if (mode === 'learn') { renderCard(); revealChip(); }
+    if (mode === 'learn') renderCard();
     if (mode === 'overview') renderOverview();
     if (mode === 'game') startRound(true);
   }
@@ -168,6 +168,7 @@
     const letter = current().upper;
     state.set = button.dataset.set;
     state.index = Math.max(0, pool(state.set).findIndex(item => item.upper === letter));
+    state.exampleIndex = 0;
     document.querySelectorAll('[data-set]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.set === state.set)));
     setMode(state.mode);
   }));
@@ -184,6 +185,11 @@
   $('prev').addEventListener('click', () => selectLetter(state.index - 1));
   $('next').addEventListener('click', () => selectLetter(state.index + 1));
   $('listen').addEventListener('click', () => speak(cardSpeech(current())));
+  $('next-example').addEventListener('click', () => {
+    cancelSpeech();
+    state.exampleIndex = (state.exampleIndex + 1) % current().examples.length;
+    renderCard(true);
+  });
   $('game-listen').addEventListener('click', readQuestion);
   $('game-next').addEventListener('click', () => {
     startRound(true);

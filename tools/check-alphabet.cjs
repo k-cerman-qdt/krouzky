@@ -15,17 +15,28 @@ const screenshots = process.env.ALPHABET_SCREENSHOTS;
     await page.goto(base);
     await page.locator('#upper').waitFor();
     assert.equal(await page.locator('#upper').textContent(), 'A');
-    assert.equal(await page.locator('.letter-chip').count(), 42);
+    assert.equal(await page.locator('.letter-chip').count(), 39);
     assert.equal(await page.locator('#prev').isDisabled(), true);
+    const firstImage = await page.locator('#letter-image').getAttribute('src');
+    await page.locator('#next-example').click();
+    assert.equal(await page.locator('#word').textContent(), 'ananas');
+    assert.equal(await page.locator('#upper').textContent(), 'A');
+    assert.notEqual(await page.locator('#letter-image').getAttribute('src'), firstImage);
+    assert.equal(await page.locator('#example-count').textContent(), 'Slovo 2 z 3');
+    await page.locator('#next-example').click();
+    assert.equal(await page.locator('#word').textContent(), 'anděl');
+    await page.locator('#next-example').click();
+    assert.equal(await page.locator('#word').textContent(), 'auto');
     await page.locator('#next').click();
     assert.equal(await page.locator('#upper').textContent(), 'Á');
     assert.equal(await page.locator('#word mark').textContent(), 'á');
+    assert.equal(await page.locator('#next-example').isVisible(), false);
     await page.locator('#prev').click();
     await page.locator('#cursive-toggle').check();
     await page.evaluate(() => document.fonts.ready);
     assert.equal(await page.evaluate(() => document.fonts.check('32px Playwrite')), true);
     assert.equal(await page.locator('#cursive-panel').isVisible(), true);
-    for (const [letter, word, highlight] of [['Ch','chléb','ch'], ['Ě','hvězda','ě'], ['Ů','dům','ů'], ['Ď','loď','ď'], ['Q','quiche','q'], ['Ž','žába','ž']]) {
+    for (const [letter, word, highlight] of [['Ch','chléb','ch'], ['Ď','ďáblík','ď'], ['É','éro','é'], ['Í','Írán','Í'], ['Ň','ňam','ň'], ['Ť','ťapka','ť'], ['W','web','w'], ['X','xylofon','x'], ['Y','yetti','y'], ['Q','quiche','q'], ['Ž','žába','ž']]) {
       await page.locator('.letter-chip').filter({ hasText: new RegExp(`^${letter}$`) }).click();
       assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('aria-pressed') === 'true' && document.activeElement?.classList.contains('letter-chip')), true, 'Selecting a letter must preserve keyboard focus');
       assert.equal(await page.locator('#word').textContent(), word);
@@ -36,11 +47,11 @@ const screenshots = process.env.ALPHABET_SCREENSHOTS;
     assert.equal(await page.locator('.letter-chip').count(), 27);
     await page.locator('[data-set="all"]').click();
     await page.locator('[data-mode="overview"]').click();
-    assert.equal(await page.locator('.mini-card').count(), 42);
+    assert.equal(await page.locator('.mini-card').count(), 39);
     await page.locator('.mini-card').last().locator('img').waitFor();
     await page.waitForFunction(() => [...document.querySelectorAll('.mini-card img')].every(img => img.complete && img.naturalWidth > 0));
     const assetCheck = await page.evaluate(async () => {
-      const sources = [...new Set(Alphabet.letters.map(item => item.image))];
+      const sources = [...new Set(Alphabet.letters.flatMap(item => item.examples.map(example => example.image)))];
       return Promise.all(sources.map(async src => {
         const response = await fetch(src);
         const body = await response.text();
@@ -48,7 +59,26 @@ const screenshots = process.env.ALPHABET_SCREENSHOTS;
       }));
     });
     assert.ok(assetCheck.every(asset => asset.ok));
-    if (screenshots) { await fs.mkdir(screenshots, { recursive:true }); await page.screenshot({ path:path.join(screenshots,'overview.png'), fullPage:true, animations:'disabled' }); }
+    if (screenshots) {
+      await fs.mkdir(screenshots, { recursive:true });
+      await page.screenshot({ path:path.join(screenshots,'overview.png'), fullPage:true, animations:'disabled' });
+      const sheet = await browser.newPage({ viewport:{width:1100,height:800} });
+      await sheet.goto(base);
+      await sheet.evaluate(() => {
+        const container = document.createElement('div');
+        container.style.cssText = 'display:grid;grid-template-columns:repeat(10,1fr);gap:8px;padding:16px';
+        for (const letter of Alphabet.letters) for (const example of letter.examples) {
+          const card = document.createElement('div'); card.style.cssText = 'text-align:center;background:white;padding:8px;border-radius:10px;font-size:12px';
+          const img = document.createElement('img'); img.src=example.image; img.style.cssText='width:78px;height:78px;display:block;margin:auto';
+          const caption = document.createElement('div'); caption.textContent=`${letter.upper}: ${example.word}`;
+          card.append(img,caption); container.append(card);
+        }
+        document.body.replaceChildren(container);
+      });
+      await sheet.waitForFunction(() => [...document.images].every(img => img.complete && img.naturalWidth > 0));
+      await sheet.screenshot({path:path.join(screenshots,'all-examples.png'),fullPage:true});
+      await sheet.close();
+    }
     await page.getByRole('button', { name:'Otevřít B, babička', exact:true }).click();
     assert.equal(await page.locator('#upper').textContent(), 'B');
     assert.equal(await page.locator('#learn').isVisible(), true);
@@ -58,11 +88,28 @@ const screenshots = process.env.ALPHABET_SCREENSHOTS;
         await page.locator(`[data-mode="${mode}"]`).click();
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
         assert.equal(overflow, false, `${mode} overflows at ${viewport.width}`);
+        if (mode === 'learn') {
+          const picker = await page.locator('#letter-strip').evaluate(el => ({
+            fits: el.scrollWidth <= el.clientWidth,
+            wraps: el.lastElementChild.getBoundingClientRect().top > el.firstElementChild.getBoundingClientRect().top
+          }));
+          assert.equal(picker.fits, true, `Letter picker scrolls horizontally at ${viewport.width}`);
+          assert.equal(picker.wraps, true, `Letter picker does not wrap at ${viewport.width}`);
+        }
         if (screenshots) await page.screenshot({ path:path.join(screenshots,`${mode}-${viewport.width}.png`), fullPage:true, animations:'disabled' });
       }
     }
-    // Simulate the external speech capability being unavailable. This also gives
-    // a visible, unambiguous target when two letters share a word (D and Ů).
+    await page.locator('[data-mode="learn"]').click();
+    await page.locator('.letter-chip').first().click();
+    for (let i = 0; i < 38; i++) await page.keyboard.press('ArrowRight');
+    const focusedLetter = await page.evaluate(() => {
+      const rect = document.activeElement.getBoundingClientRect();
+      return { text:document.activeElement.textContent, visible:rect.top >= 0 && rect.bottom <= innerHeight };
+    });
+    assert.equal(focusedLetter.text, 'Ž');
+    assert.equal(focusedLetter.visible, true, 'Keyboard-selected letter must stay within viewport');
+    // Simulate the external speech capability being unavailable to verify the
+    // visible fallback prompt and derive an unambiguous target for the quiz.
     await page.addInitScript(() => Object.defineProperty(window, 'speechSynthesis', {value:undefined}));
     await page.reload();
     await page.locator('[data-mode="game"]').click();
@@ -88,6 +135,6 @@ const screenshots = process.env.ALPHABET_SCREENSHOTS;
     await page.getByRole('link', {name:'Obrázková abeceda →'}).click();
     assert.equal(await page.locator('#upper').textContent(), 'A');
     assert.deepEqual(errors, []);
-    console.log('PASS: 42 cards, 41 illustrations, Czech font, internal word highlighting, 27-letter subset, navigation, game retry/success, speech fallback, cross-links; no page errors or overflow at 1024/768/390 px.');
+    console.log(`PASS: 39 initial-letter cards, ${assetCheck.length} illustrations, example cycling, wrapping picker, Czech font, 27-letter subset, game retry/success, speech fallback, cross-links; no page errors or overflow at 1024/768/390 px.`);
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });

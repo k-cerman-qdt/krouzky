@@ -1,5 +1,11 @@
 # Obrázková abeceda
 
+## Následné upřesnění uživatele
+
+Přidána podpora více slov na písmeno: další příklady mají vlastní obrázek a volitelný popisek/výslovnost, mění se tlačítkem „Další slovo“ při zachování písmena. Další příklady používá i hra. Řidší písmena mohou mít jediný příklad. Regresní test ověřuje cyklus auto → ananas → anděl → auto, změnu obrázku, zachování písmena a zalamování výběru bez horizontálního přetečení.
+
+Používat pouze počáteční písmena slov. Na výslovné přání vynechat písmena bez vhodného běžného příkladu na začátku slova (Ě, Ů, Ý). Aktuální sada má 39 karet; nové příklady: árie, ďáblík, éro, Írán, ňam, óda, ťapka, web, xylofon, yetti. Předčítání, zvýraznění i hra pracují pouze se začátky slov. Výběr písmen pod kartičkou se zalamuje do řádků podle šířky stránky a nemá vodorovný posuvník. Níže je původní plán první verze.
+
 Schválený směr: samostatná statická stránka pro tablet, vedle kroužků ve stávajícím repozitáři na GitHub Pages. Velká/malá tiskací písmena, české psací tvary, obrázky, úplná abeceda s diakritikou a Ch. Kartičky, přehled a hra; české předčítání podle dostupného hlasu zařízení.
 
 ## Provedení
